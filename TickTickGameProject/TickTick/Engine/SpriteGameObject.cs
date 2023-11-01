@@ -61,7 +61,7 @@ namespace Engine
 
             // draw the sprite at its *global* position in the game world
             if (sprite != null)
-                sprite.Draw(spriteBatch, GlobalPosition, Origin);
+                sprite.Draw(spriteBatch, GlobalPosition - Camera.CameraOffset, Origin);
         }
 
         /// <summary>

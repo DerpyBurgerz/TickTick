@@ -160,7 +160,7 @@ class Player : AnimatedGameObject
             else
                 level.Timer.Multiplier = 1;
         }
-            
+        Camera.Update(localPosition);     
     }
 
     void ApplyFriction(GameTime gameTime)
