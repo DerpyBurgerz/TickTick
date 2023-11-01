@@ -49,8 +49,14 @@ class Rocket : AnimatedGameObject
         else if (!sprite.Mirror && BoundingBox.Left > level.BoundingBox.Right)
             Reset();
 
+
+        //if the player jumps on top of the rocket, the rocket resets
+        if (level.Player.LocalPosition.Y < LocalPosition.Y && HasPixelPreciseCollision(level.Player))
+        {
+            Reset();
+        }
         // if the rocket touches the player, the player dies
-        if (level.Player.CanCollideWithObjects && HasPixelPreciseCollision(level.Player))
+        else if (level.Player.CanCollideWithObjects && HasPixelPreciseCollision(level.Player))
             level.Player.Die();
     }
 }
