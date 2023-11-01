@@ -25,9 +25,12 @@ partial class Level : GameObjectList
 
         // load the background
         GameObjectList backgrounds = new GameObjectList();
-        SpriteGameObject backgroundSky = new SpriteGameObject("Sprites/Backgrounds/spr_sky", TickTick.Depth_Background);
-        backgroundSky.LocalPosition = new Vector2(0, 825 - backgroundSky.Height);
-        backgrounds.AddChild(backgroundSky);
+        for (int i = 0; i < 3 ; i++)
+        {
+			SpriteGameObject backgroundSky = new SpriteGameObject("Sprites/Backgrounds/spr_sky", TickTick.Depth_Background);
+			backgroundSky.LocalPosition = new Vector2((1-i)*backgroundSky.Width, 825 - backgroundSky.Height);
+			backgrounds.AddChild(backgroundSky);
+		}
 
         AddChild(backgrounds);
 
@@ -39,13 +42,13 @@ partial class Level : GameObjectList
         AddChild(timer);
 
         // add mountains in the background
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 10; i++)
         {
             SpriteGameObject mountain = new SpriteGameObject(
                 "Sprites/Backgrounds/spr_mountain_" + (ExtendedGame.Random.Next(2) + 1),
                 TickTick.Depth_Background + 0.01f * (float)ExtendedGame.Random.NextDouble());
 
-            mountain.LocalPosition = new Vector2(mountain.Width * (i-1) * 0.4f, 
+            mountain.LocalPosition = new Vector2(mountain.Width * (i-4) * 0.4f, 
                 BoundingBox.Height - mountain.Height);
 
             backgrounds.AddChild(mountain);

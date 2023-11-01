@@ -9,7 +9,7 @@ namespace Engine
 		
 		public static void Update(Vector2 position)
 		{
-			cameraOffset.X = position.X - 100;
+			cameraOffset.X = position.X - 500;
 		}
 	}
 	
