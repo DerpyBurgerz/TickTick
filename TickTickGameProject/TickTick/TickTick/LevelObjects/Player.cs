@@ -258,6 +258,8 @@ class Player : AnimatedGameObject
                             standingOnIceTile = true;
                         else if (surface == Tile.SurfaceType.Speed)
                             standingOnSpeedTile = true;
+                        else if (surface == Tile.SurfaceType.Normal || surface == Tile.SurfaceType.Hot)
+                            standingOnSpeedTile = false;
                     }
                     else if (velocity.Y <= 0 && bbox.Center.Y > tileBounds.Bottom && overlap.Height > 2) // ceiling
                     {
