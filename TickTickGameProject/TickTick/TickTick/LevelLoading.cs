@@ -97,6 +97,8 @@ partial class Level : GameObjectList
             LoadGoal(x, y);
         else if (symbol == 'W')
             LoadWaterDrop(x, y);
+        else if (symbol == 'F') 
+            LoadSpeedRocket(x, y);
         else if (symbol == 'R')
             LoadRocketEnemy(x, y);
         else if (symbol == 'T')
@@ -123,6 +125,10 @@ partial class Level : GameObjectList
                 return new Tile(Tile.Type.Platform, Tile.SurfaceType.Ice);
             case 'I':
                 return new Tile(Tile.Type.Wall, Tile.SurfaceType.Ice);
+            case 'v':
+                return new Tile(Tile.Type.Platform, Tile.SurfaceType.Speed);
+            case 'V':
+                return new Tile(Tile.Type.Wall, Tile.SurfaceType.Speed);
             default:
                 return new Tile(Tile.Type.Empty, Tile.SurfaceType.Normal);
         }
@@ -154,6 +160,14 @@ partial class Level : GameObjectList
         AddChild(w);
         // store an extra reference to it
         waterDrops.Add(w);
+    }
+
+    void LoadSpeedRocket(int x, int y)
+    {
+        Vector2 pos = GetCellPosition(x, y) + new Vector2(TileWidth / 2, TileHeight / 3);
+        SpeedRocket f = new SpeedRocket(this, pos);
+
+        AddChild(f);
     }
 
     void LoadRocketEnemy(int x, int y)

@@ -17,9 +17,9 @@ class Player : AnimatedGameObject
     bool facingLeft; // Whether or not the character is currently looking to the left.
 
     bool isGrounded; // Whether or not the character is currently standing on something.
-    bool standingOnIceTile, standingOnHotTile; // Whether or not the character is standing on an ice tile or a hot tile.
+    bool standingOnIceTile, standingOnHotTile, standingOnSpeedTile; // Whether or not the character is standing on an ice tile or a hot tile.
     float desiredHorizontalSpeed; // The horizontal speed at which the character would like to move.
-
+    float horizontalSpeedMultiplier;// multiplier for when the player stands on a speed tile. 
     Level level;
     Vector2 startPosition;
     
@@ -76,14 +76,14 @@ class Player : AnimatedGameObject
         if (inputHelper.KeyDown(Keys.Left))
         {
             facingLeft = true;
-            desiredHorizontalSpeed = -walkingSpeed;
+            desiredHorizontalSpeed = -walkingSpeed * horizontalSpeedMultiplier * SpeedRocket.SpeedRocketMuliplier();
             if (isGrounded)
                 PlayAnimation("run");
         }
         else if (inputHelper.KeyDown(Keys.Right))
         {
             facingLeft = false;
-            desiredHorizontalSpeed = walkingSpeed;
+            desiredHorizontalSpeed = walkingSpeed * horizontalSpeedMultiplier * SpeedRocket.SpeedRocketMuliplier();
             if (isGrounded)
                 PlayAnimation("run");
         }
@@ -159,6 +159,11 @@ class Player : AnimatedGameObject
                 level.Timer.Multiplier = 2;
             else
                 level.Timer.Multiplier = 1;
+
+            if (standingOnSpeedTile)
+                horizontalSpeedMultiplier = 2 ;
+            else if (standingOnSpeedTile == false)
+                horizontalSpeedMultiplier = 1;
         }
         Camera.Update(localPosition);     
     }
@@ -251,6 +256,10 @@ class Player : AnimatedGameObject
                             standingOnHotTile = true;
                         else if (surface == Tile.SurfaceType.Ice)
                             standingOnIceTile = true;
+                        else if (surface == Tile.SurfaceType.Speed)
+                            standingOnSpeedTile = true;
+                        else if (surface == Tile.SurfaceType.Normal || surface == Tile.SurfaceType.Hot)
+                            standingOnSpeedTile = false;
                     }
                     else if (velocity.Y <= 0 && bbox.Center.Y > tileBounds.Bottom && overlap.Height > 2) // ceiling
                     {
