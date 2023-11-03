@@ -77,13 +77,16 @@ class Player : AnimatedGameObject
         {
             facingLeft = true;
             desiredHorizontalSpeed = -walkingSpeed * horizontalSpeedMultiplier * SpeedRocket.SpeedRocketMuliplier();
+
             if (isGrounded)
                 PlayAnimation("run");
         }
         else if (inputHelper.KeyDown(Keys.Right))
         {
             facingLeft = false;
+
             desiredHorizontalSpeed = walkingSpeed * horizontalSpeedMultiplier * SpeedRocket.SpeedRocketMuliplier();
+
             if (isGrounded)
                 PlayAnimation("run");
         }
@@ -161,8 +164,9 @@ class Player : AnimatedGameObject
                 level.Timer.Multiplier = 1;
 
             if (standingOnSpeedTile)
-                horizontalSpeedMultiplier = 2 ;
+                horizontalSpeedMultiplier = 2;
             else if (standingOnSpeedTile == false)
+
                 horizontalSpeedMultiplier = 1;
         }
         Camera.Update(localPosition);     
