@@ -10,7 +10,7 @@ class TickTick : ExtendedGameWithLevels
     public const float Depth_LevelTiles = 0.5f; // for tiles in the level
     public const float Depth_LevelObjects = 0.6f; // for all game objects except the player
     public const float Depth_LevelPlayer = 0.7f; // for the player
-
+	public static Point WorldSize { get { return worldSize; } }
 
     [STAThread]
     static void Main()

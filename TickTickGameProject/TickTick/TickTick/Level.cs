@@ -27,9 +27,12 @@ partial class Level : GameObjectList
         GameObjectList backgrounds = new GameObjectList();
         for (int i = 0; i < 3 ; i++)
         {
-			SpriteGameObject backgroundSky = new SpriteGameObject("Sprites/Backgrounds/spr_sky", TickTick.Depth_Background);
-			backgroundSky.LocalPosition = new Vector2((1-i)*backgroundSky.Width, 825 - backgroundSky.Height);
-			backgrounds.AddChild(backgroundSky);
+			for (int j = 0; j < 3; j++)
+			{
+				SpriteGameObject backgroundSky = new SpriteGameObject("Sprites/Backgrounds/spr_sky", TickTick.Depth_Background);
+				backgroundSky.LocalPosition = new Vector2((1 - i) * backgroundSky.Width, 825 - backgroundSky.Height + (j*backgroundSky.Height));
+				backgrounds.AddChild(backgroundSky);
+			}
 		}
 
         AddChild(backgrounds);

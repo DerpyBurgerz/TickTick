@@ -54,6 +54,7 @@ class Rocket : AnimatedGameObject
         if (level.Player.LocalPosition.Y < LocalPosition.Y && HasPixelPreciseCollision(level.Player))
         {
             Reset();
+			level.Player.Jump();
         }
         // if the rocket touches the player, the player dies
         else if (level.Player.CanCollideWithObjects && HasPixelPreciseCollision(level.Player))

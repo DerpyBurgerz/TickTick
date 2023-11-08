@@ -36,7 +36,7 @@ class Player : AnimatedGameObject
     {
         this.level = level;
         this.startPosition = startPosition;
-
+		
         // load all animations
         LoadAnimation("Sprites/LevelObjects/Player/spr_idle", "idle", true, 0.1f);
         LoadAnimation("Sprites/LevelObjects/Player/spr_run@13", "run", true, 0.04f);
@@ -169,7 +169,7 @@ class Player : AnimatedGameObject
 
                 horizontalSpeedMultiplier = 1;
         }
-        Camera.Update(localPosition);     
+        Camera.Update(localPosition, level.BoundingBox, TickTick.WorldSize);     
     }
 
     void ApplyFriction(GameTime gameTime)
