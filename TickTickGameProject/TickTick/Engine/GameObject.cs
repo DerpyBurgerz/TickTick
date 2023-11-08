@@ -31,10 +31,15 @@ namespace Engine
         /// </summary>
         public GameObject Parent { get; set; }
 
-        /// <summary>
-        /// Creates a new GameObject.
-        /// </summary>
-        public GameObject()
+		/// <summary>
+		/// Creates a new GameObject.
+		/// </summary>
+
+		/// <summary>
+		/// The bool UI is true when this sprite should not move with the gameworld.
+		/// </summary>
+		protected bool UI;
+		public GameObject()
         {
             LocalPosition = Vector2.Zero;
             velocity = Vector2.Zero;

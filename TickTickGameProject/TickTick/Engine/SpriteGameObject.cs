@@ -39,13 +39,14 @@ namespace Engine
         /// <param name="spriteName">The name of the sprite to load.</param>
         /// <param name="depth">The depth at which the object should be drawn.</param>
         /// <param name="sheetIndex">The sheet index of the sprite to use initially.</param>
-        public SpriteGameObject(string spriteName, float depth, int sheetIndex = 0)
+        public SpriteGameObject(string spriteName, float depth, int sheetIndex = 0, bool UI = false)
         {
             this.depth = depth;
 
             if (spriteName != null)
                 sprite = new SpriteSheet(spriteName, depth, sheetIndex);
             Origin = Vector2.Zero;
+			this.UI = UI;
         }
 
         /// <summary>
@@ -59,9 +60,14 @@ namespace Engine
             if (!Visible)
                 return;
 
-            // draw the sprite at its *global* position in the game world
-            if (sprite != null)
-                sprite.Draw(spriteBatch, GlobalPosition - Camera.CameraOffset, Origin);
+			// draw the sprite at its *global* position in the game world
+			if (sprite != null)
+				if (UI)
+				{
+					sprite.Draw(spriteBatch, GlobalPosition, Origin);
+				}
+				else
+					sprite.Draw(spriteBatch, GlobalPosition - Camera.CameraOffset, Origin);
         }
 
         /// <summary>

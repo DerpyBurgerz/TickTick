@@ -40,7 +40,7 @@ partial class Level : GameObjectList
     void AddLevelInfoObjects(string description)
     {
         // - background box
-        SpriteGameObject frame = new SpriteGameObject("Sprites/UI/spr_frame_hint", TickTick.Depth_UIBackground);
+        SpriteGameObject frame = new SpriteGameObject("Sprites/UI/spr_frame_hint", TickTick.Depth_UIBackground, UI:true);
         frame.SetOriginToCenter();
         frame.LocalPosition = new Vector2(720, 50);
         AddChild(frame);

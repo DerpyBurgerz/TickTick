@@ -18,7 +18,7 @@ class BombTimer : GameObjectList
         localPosition = new Vector2(20, 20);
         
         // add a background image
-        SpriteGameObject background = new SpriteGameObject("Sprites/UI/spr_timer", TickTick.Depth_UIBackground);
+        SpriteGameObject background = new SpriteGameObject("Sprites/UI/spr_timer", TickTick.Depth_UIBackground, UI:true);
         AddChild(background);
 
         // add a text

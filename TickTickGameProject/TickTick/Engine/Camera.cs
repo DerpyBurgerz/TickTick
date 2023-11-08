@@ -10,6 +10,7 @@ namespace Engine
 		static Vector2 playerPosition = new Vector2(500, 400);//desired Position of the player on the screen.
 		public static void Update(Vector2 positionObject, Rectangle levelBox, Point worldSize)
 		{
+			//set position of camera with minimum 0 and maximum, right side of level-screen
 			cameraOffset.Y = MathHelper.Clamp(positionObject.Y - playerPosition.Y, 0, levelBox.Height - worldSize.Y);
 			cameraOffset.X = MathHelper.Clamp(positionObject.X - playerPosition.X, 0, levelBox.Width - worldSize.X);
 		}
