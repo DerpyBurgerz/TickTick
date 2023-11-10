@@ -138,6 +138,7 @@ partial class Level : GameObjectList
     {
         // create the bomb character
         Player = new Player(this, GetCellBottomCenter(x, y));
+		Camera.SetCameraObject(Player, BoundingBox, TickTick.WorldSize);
         AddChild(Player);
     }
 

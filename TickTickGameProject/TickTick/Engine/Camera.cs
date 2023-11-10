@@ -1,18 +1,28 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 namespace Engine
 {
 	public class Camera
 	{
-		static Vector2 cameraOffset;
+		static Vector2 cameraOffset, cameraBorder;
+		static float damping = 0.8f;
 		public static Vector2 CameraOffset { get { return cameraOffset; } }
-		static Vector2 playerPosition = new Vector2(500, 400);//desired Position of the player on the screen.
-		public static void Update(Vector2 positionObject, Rectangle levelBox, Point worldSize)
+		static Vector2 desiredPosition = new Vector2(720, 600);
+		static GameObject followedObject;
+		static Rectangle levelBox;
+		static Point worldSize;
+		public static void Update()
 		{
-			//set position of camera with minimum 0 and maximum, right side of level-screen
-			cameraOffset.Y = MathHelper.Clamp(positionObject.Y - playerPosition.Y, 0, levelBox.Height - worldSize.Y);
-			cameraOffset.X = MathHelper.Clamp(positionObject.X - playerPosition.X, 0, levelBox.Width - worldSize.X);
+			//CameraBorder is a Vector2 with the max position for the camera.
+			cameraBorder = new Vector2(levelBox.Width - worldSize.X, levelBox.Height - worldSize.Y);
+			//Smoothstep makes the camera go smooth, and Clamp prevents it from going outside of the level.
+			//The damping variable can be changed to change the smoothness of the camera.
+			cameraOffset = Vector2.Clamp((Vector2.SmoothStep(followedObject.LocalPosition - desiredPosition, cameraOffset, damping)), Vector2.Zero, cameraBorder);
+		}
+		public static void SetCameraObject(GameObject gameObject, Rectangle LevelBox, Point WorldSize)
+		{
+			followedObject = gameObject;
+			levelBox = LevelBox;
+			worldSize = WorldSize;
 		}
 	}
 }

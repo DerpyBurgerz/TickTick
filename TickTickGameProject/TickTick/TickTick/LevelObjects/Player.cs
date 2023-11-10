@@ -169,7 +169,7 @@ class Player : AnimatedGameObject
 
                 horizontalSpeedMultiplier = 1;
         }
-        Camera.Update(localPosition, level.BoundingBox, TickTick.WorldSize);     
+           
     }
 
     void ApplyFriction(GameTime gameTime)

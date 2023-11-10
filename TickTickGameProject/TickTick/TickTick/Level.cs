@@ -129,7 +129,9 @@ partial class Level : GameObjectList
         {
             Player.Explode();
         }
-    }
+
+		Camera.Update();
+	}
 
     /// <summary>
     /// Checks and returns whether the player has collected all water drops in this level.

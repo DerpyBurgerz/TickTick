@@ -65,8 +65,7 @@ class PlayingState : GameState, IPlayingState
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
-
-        if (level != null)
+		if (level != null)
             level.Update(gameTime);
 
         // show or hide the "game over" image
