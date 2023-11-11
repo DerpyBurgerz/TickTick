@@ -2,16 +2,22 @@
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Cryptography.X509Certificates;
 
 partial class Level : GameObjectList
 {
     void LoadLevelFromFile(string filename)
+    
     {
+        
+
         // open the file
         StreamReader reader = new StreamReader(filename);
 
-        // read the description
+        // read the description in the first line and the level time in the second line
         string description = reader.ReadLine();
+
+        string levelTimeText = reader.ReadLine();
 
         // read the rows of the grid; keep track of the longest row
         int gridWidth = 0;
@@ -35,8 +41,16 @@ partial class Level : GameObjectList
 
         // add game objects to show that general level info
         AddLevelInfoObjects(description);
+
+        TimeInLevel(levelTimeText);
+        
     }
 
+    public void TimeInLevel(string levelTimeText)
+    {    
+        seconds = int.Parse(levelTimeText);  
+     }
+        
     void AddLevelInfoObjects(string description)
     {
         // - background box
@@ -50,6 +64,7 @@ partial class Level : GameObjectList
         hintText.Text = description;
         hintText.LocalPosition = new Vector2(510, 40);
         AddChild(hintText);
+        
     }
 
     void AddPlayingField(List<string> gridRows, int gridWidth, int gridHeight)
@@ -209,4 +224,9 @@ partial class Level : GameObjectList
     {
         return GetCellPosition(x, y + 1) + new Vector2(TileWidth / 2, 0);
     }
+
+    /*public int LevelTime()
+    {
+        return levelTime;
+    }*/
 }

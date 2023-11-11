@@ -62,7 +62,7 @@ class BombTimer : GameObjectList
     public override void Reset()
     {
         base.Reset();
-        timeLeft = 999999;
+        timeLeft = Level.TimeLeft();
         Running = true;
         Multiplier = 1;
     }

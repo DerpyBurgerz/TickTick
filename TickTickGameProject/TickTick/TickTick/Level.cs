@@ -17,6 +17,8 @@ partial class Level : GameObjectList
     SpriteGameObject goal;
     BombTimer timer;
 
+    static public int seconds;
+
     bool completionDetected;
 
     public Level(int levelIndex, string filename)
@@ -73,6 +75,11 @@ partial class Level : GameObjectList
     }
 
     public BombTimer Timer { get { return timer; } }
+
+    static public int TimeLeft()
+    {
+        return seconds;
+    }
 
     public Vector2 GetCellPosition(int x, int y)
     {
