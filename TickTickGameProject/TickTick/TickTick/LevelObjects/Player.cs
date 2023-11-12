@@ -71,18 +71,13 @@ class Player : AnimatedGameObject
     {
         if (!CanCollideWithObjects)
             return;
-
+        
         // arrow keys: move left or right
         if (inputHelper.KeyDown(Keys.Left))
         {
             facingLeft = true;
-            
-            if (SpeedRocket.SpeedRocketMuliplier() == 0)
-                desiredHorizontalSpeed = -walkingSpeed * horizontalSpeedMultiplier;
-            
 
-            else
-                desiredHorizontalSpeed = -walkingSpeed * horizontalSpeedMultiplier * SpeedRocket.SpeedRocketMuliplier();
+            desiredHorizontalSpeed = -walkingSpeed * horizontalSpeedMultiplier * SpeedRocket.SpeedRocketMuliplier;
 
             if (isGrounded)
                 PlayAnimation("run");
@@ -93,11 +88,7 @@ class Player : AnimatedGameObject
 
             /*this if statement circumvents the problem that the player could not move when a level did not include a speedrocket
             when there was no speedrocket, the speedrocketmultiplier was 0, canceling horizontal movement.*/
-            if (SpeedRocket.SpeedRocketMuliplier() == 0)
-                desiredHorizontalSpeed = walkingSpeed * horizontalSpeedMultiplier;
-
-           else
-                desiredHorizontalSpeed = walkingSpeed * horizontalSpeedMultiplier * SpeedRocket.SpeedRocketMuliplier();
+            desiredHorizontalSpeed = walkingSpeed * horizontalSpeedMultiplier * SpeedRocket.SpeedRocketMuliplier;
 
             if (isGrounded)
                 PlayAnimation("run");

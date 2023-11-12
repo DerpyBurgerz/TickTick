@@ -62,8 +62,5 @@ class SpeedRocket : SpriteGameObject
         elapsedTime = 0;
     }
 
-    public static float SpeedRocketMuliplier()
-    {
-        return speedRocketMultiplier;
-    }
+    public static float SpeedRocketMuliplier { get { return speedRocketMultiplier; } set { speedRocketMultiplier = value; } }
 }

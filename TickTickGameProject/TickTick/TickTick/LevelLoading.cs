@@ -43,8 +43,11 @@ partial class Level : GameObjectList
         AddLevelInfoObjects(description);
 
         TimeInLevel(levelTimeText);
-        
-    }
+
+        //If there is no Rocket in this level, set the SpeedRocketmultipler to 1.
+		if (SpeedRocket.SpeedRocketMuliplier == 0)
+			SpeedRocket.SpeedRocketMuliplier = 1;
+	}
 
     public void TimeInLevel(string levelTimeText)
     {
