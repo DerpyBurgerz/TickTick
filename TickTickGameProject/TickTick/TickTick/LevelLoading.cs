@@ -49,6 +49,7 @@ partial class Level : GameObjectList
 			SpeedRocket.SpeedRocketMuliplier = 1;
 	}
 
+    //sets de integer seconds to either a standard value of 30 or will retrieve the value from the string translated to an integer
     public void TimeInLevel(string levelTimeText)
     {
         if (levelTimeText == "")

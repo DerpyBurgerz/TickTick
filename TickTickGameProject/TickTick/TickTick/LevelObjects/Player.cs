@@ -86,8 +86,6 @@ class Player : AnimatedGameObject
         {
             facingLeft = false;
 
-            /*this if statement circumvents the problem that the player could not move when a level did not include a speedrocket
-            when there was no speedrocket, the speedrocketmultiplier was 0, canceling horizontal movement.*/
             desiredHorizontalSpeed = walkingSpeed * horizontalSpeedMultiplier * SpeedRocket.SpeedRocketMuliplier;
 
             if (isGrounded)
