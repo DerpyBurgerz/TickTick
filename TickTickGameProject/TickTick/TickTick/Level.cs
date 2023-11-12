@@ -47,16 +47,18 @@ partial class Level : GameObjectList
         AddChild(timer);
 
         // add mountains in the background
-        for (int i = 0; i < 10; i++)
+        for (int i = 0;; i++)//This creates an infinite loop with int i which increments each loop.
         {
             SpriteGameObject mountain = new SpriteGameObject(
                 "Sprites/Backgrounds/spr_mountain_" + (ExtendedGame.Random.Next(2) + 1),
-                TickTick.Depth_Background + 0.01f * (float)ExtendedGame.Random.NextDouble());
+                TickTick.Depth_Background + 0.01f * (float)ExtendedGame.Random.NextDouble(), parralaxFactor: 0.3f);
 
             mountain.LocalPosition = new Vector2(mountain.Width * (i-4) * 0.4f, 
                 BoundingBox.Height - mountain.Height);
 
             backgrounds.AddChild(mountain);
+            if ((i-4) * (mountain.Width*0.4) > BoundingBox.Width)
+                break;
         }
 
         // add clouds

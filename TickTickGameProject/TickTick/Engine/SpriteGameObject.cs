@@ -33,13 +33,19 @@ namespace Engine
         /// </summary>
         protected float depth;
 
+		/// <summary>
+		/// The parralaxFactor (between 0 and 1) is the speed at which the object moves relative to the foreground. 
+		/// A larger value means that the object will be drawn on top.
+		/// </summary>
+		protected Vector2 parralaxFactor;
+
         /// <summary>
         /// Creates a new SpriteGameObject with a given sprite name.
         /// </summary>
         /// <param name="spriteName">The name of the sprite to load.</param>
         /// <param name="depth">The depth at which the object should be drawn.</param>
         /// <param name="sheetIndex">The sheet index of the sprite to use initially.</param>
-        public SpriteGameObject(string spriteName, float depth, int sheetIndex = 0, bool UI = false)
+        public SpriteGameObject(string spriteName, float depth, int sheetIndex = 0, bool UI = false, float parralaxFactor = 1f)
         {
             this.depth = depth;
 
@@ -47,6 +53,8 @@ namespace Engine
                 sprite = new SpriteSheet(spriteName, depth, sheetIndex);
             Origin = Vector2.Zero;
 			this.UI = UI;
+            this.parralaxFactor.X = parralaxFactor;
+            this.parralaxFactor.Y = 1;
         }
 
         /// <summary>
@@ -67,7 +75,7 @@ namespace Engine
 					sprite.Draw(spriteBatch, GlobalPosition, Origin);
 				}
 				else
-					sprite.Draw(spriteBatch, GlobalPosition - Camera.CameraOffset, Origin);
+					sprite.Draw(spriteBatch, (GlobalPosition - Camera.CameraOffset)*parralaxFactor, Origin);
         }
 
         /// <summary>

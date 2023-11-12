@@ -5,7 +5,7 @@ class Cloud : SpriteGameObject
 {
     Level level;
 
-    public Cloud(Level level) : base(null, TickTick.Depth_Background)
+    public Cloud(Level level) : base(null, TickTick.Depth_Background, parralaxFactor: 0.6f)
     {
         this.level = level;
         Reset();
@@ -17,7 +17,7 @@ class Cloud : SpriteGameObject
 
         // give the cloud a starting position inside the level
         localPosition.X = ExtendedGame.Random.Next(-sprite.Width, level.BoundingBox.Width);
-    }
+    }   
 
     void Randomize()
     {
