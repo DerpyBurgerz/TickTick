@@ -57,6 +57,7 @@ partial class Level : GameObjectList
                 BoundingBox.Height - mountain.Height);
 
             backgrounds.AddChild(mountain);
+            //When the drawn mountain is farther right than the screen is, the loop breaks.
             if ((i-4) * (mountain.Width*0.4) > BoundingBox.Width)
                 break;
         }

@@ -47,9 +47,12 @@ partial class Level : GameObjectList
     }
 
     public void TimeInLevel(string levelTimeText)
-    {    
-        seconds = int.Parse(levelTimeText);  
-     }
+    {
+        if (levelTimeText == "")
+            seconds = 30;
+        else
+            seconds = int.Parse(levelTimeText);  
+    }
         
     void AddLevelInfoObjects(string description)
     {
