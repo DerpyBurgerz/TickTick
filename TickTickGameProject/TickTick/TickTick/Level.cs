@@ -79,6 +79,7 @@ partial class Level : GameObjectList
 
     public BombTimer Timer { get { return timer; } }
 
+    //method to make seconds accessible in BombTimer.cs
     static public int TimeLeft()
     {
         return seconds;

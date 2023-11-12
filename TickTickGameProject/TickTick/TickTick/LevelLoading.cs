@@ -49,6 +49,7 @@ partial class Level : GameObjectList
 			SpeedRocket.SpeedRocketMuliplier = 1;
 	}
 
+    //sets de integer seconds to either a standard value of 30 or will retrieve the value from the string translated to an integer
     public void TimeInLevel(string levelTimeText)
     {
         if (levelTimeText == "")
@@ -186,6 +187,7 @@ partial class Level : GameObjectList
 
     void LoadSpeedRocket(int x, int y)
     {
+        //the speedRocket shares the fundamentals of the waterdrop as a collectible
         Vector2 pos = GetCellPosition(x, y) + new Vector2(TileWidth / 2, TileHeight / 3);
         SpeedRocket f = new SpeedRocket(this, pos);
 
@@ -230,9 +232,4 @@ partial class Level : GameObjectList
     {
         return GetCellPosition(x, y + 1) + new Vector2(TileWidth / 2, 0);
     }
-
-    /*public int LevelTime()
-    {
-        return levelTime;
-    }*/
 }
