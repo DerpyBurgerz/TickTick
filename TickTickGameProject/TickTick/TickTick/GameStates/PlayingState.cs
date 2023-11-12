@@ -57,7 +57,10 @@ class PlayingState : GameState, IPlayingState
                 level.HandleInput(inputHelper);
 
                 if (quitButton.Pressed)
+                {
                     ExtendedGame.GameStateManager.SwitchTo(ExtendedGameWithLevels.StateName_LevelSelect);
+                    Camera.Reset();
+                }
             }
         }
     }

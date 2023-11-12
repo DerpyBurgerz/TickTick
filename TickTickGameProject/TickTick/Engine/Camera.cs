@@ -24,5 +24,10 @@ namespace Engine
 			levelBox = LevelBox;
 			worldSize = WorldSize;
 		}
+		public static void Reset()
+		{
+			followedObject = null;
+			cameraOffset = Vector2.Zero;
+		}
 	}
 }
